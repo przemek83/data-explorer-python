@@ -2,6 +2,8 @@ import sys
 
 
 def exit_with_help():
+    print("Usage: <binary> file", file=sys.stderr)
+    print(" file - name of data file.", file=sys.stderr)
     sys.exit(-1)
 
 
