@@ -1,5 +1,7 @@
 import sys
 from timeit import default_timer as timer
+import data_loader
+import file_data_loader
 
 
 def exit_with_help():
@@ -21,9 +23,12 @@ def main():
     begin = timer()
     try:
         with open(file_name, "r") as file:
-            file.readable()
-            for line in file:
-                print(line.rstrip("\n"))
+            loader = file_data_loader.FileDataLoader()
+            ok, headers = loader.load(file)
+
+            if ok:
+                print("Data loaded, headers count %d" % len(headers))
+
     except OSError:
         print("Cannot open " + file_name + " file, exiting.", file=sys.stderr)
         sys.exit(-1)
