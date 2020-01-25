@@ -3,5 +3,5 @@ import abc
 
 class DataLoader(object):
     @abc.abstractmethod
-    def load(self, input_file):
+    def load(self):
         return False, []
