@@ -1,9 +1,11 @@
 import data_loader
-from io import TextIOWrapper
+from typing import TextIO, List
+
+from ColumnType import Column
 
 
 class FileDataLoader(data_loader.DataLoader):
-    def __init__(self, input_file: TextIOWrapper):
+    def __init__(self, input_file: TextIO):
         self.input_file = input_file
 
     def load(self): 
@@ -11,3 +13,12 @@ class FileDataLoader(data_loader.DataLoader):
             print(line.rstrip("\n"))
 
         return True, []
+
+    def get_headers(self) -> List[str]:
+        pass
+
+    def get_column_types(self) -> List[Column]:
+        pass
+
+    def get_data(self) -> List[List]:
+        pass

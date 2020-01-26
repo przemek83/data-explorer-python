@@ -1,6 +1,6 @@
 import sys
 from timeit import default_timer as timer
-import data_loader
+
 import file_data_loader
 
 

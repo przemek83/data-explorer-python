@@ -1,4 +1,3 @@
-import pytest
 from ColumnType import Column, column_type_from_string
 
 
