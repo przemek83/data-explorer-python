@@ -24,10 +24,11 @@ def main():
     try:
         with open(file_name, "r") as file:
             loader = file_data_loader.FileDataLoader(file)
-            ok, headers = loader.load()
+            ok = loader.load()
+            headers = loader.get_headers()
 
             if ok:
-                print("Data loaded, headers count %d" % len(headers))
+                print("Data loaded, headers count %d:" % len(headers), headers)
 
     except OSError:
         print("Cannot open " + file_name + " file, exiting.", file=sys.stderr)
