@@ -1,11 +1,15 @@
 import abc
-from typing import List
-from ColumnType import Column
+from typing import Any, List, TypeVar
+
+from column_type import Column
 
 
-class DataLoader(object):
+TDataLoader = TypeVar('TDataLoader', bound='DataLoader')
+
+
+class DataLoader:
     @abc.abstractmethod
-    def load(self) -> bool:
+    def load(self: TDataLoader) -> bool:
         return False
 
     @abc.abstractmethod
@@ -17,5 +21,5 @@ class DataLoader(object):
         return []
 
     @abc.abstractmethod
-    def get_data(self) -> List[List]:
+    def get_data(self) -> List[List[Any]]:
         return []

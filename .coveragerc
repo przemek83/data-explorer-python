@@ -1,0 +1,3 @@
+[run]
+include = */data_explorer/*
+omit = setup.py, *tests*

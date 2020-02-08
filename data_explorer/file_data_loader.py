@@ -1,15 +1,15 @@
-import data_loader
-from typing import TextIO, List
+from typing import Any, List, TextIO
 
-from ColumnType import Column, column_type_from_string
+from column_type import Column, column_type_from_string
+import data_loader
 
 
 class FileDataLoader(data_loader.DataLoader):
     def __init__(self, input_file: TextIO):
         self.input_file = input_file
-        self.headers = []
-        self.column_types = []
-        self.data = []
+        self.headers: List[str] = []
+        self.column_types: List[Column] = []
+        self.data: List[List[Any]] = []
 
     def load(self) -> bool:
         for line in self.input_file:
@@ -30,7 +30,7 @@ class FileDataLoader(data_loader.DataLoader):
     def get_column_types(self) -> List[Column]:
         return self.column_types
 
-    def get_data(self) -> List[List]:
+    def get_data(self) -> List[List[Any]]:
         return self.data
 
     def __load_column_types(self, column_strings: List[str]) -> None:
@@ -40,4 +40,5 @@ class FileDataLoader(data_loader.DataLoader):
     def __loaded_data_ok(self) -> bool:
         columns_valid = Column.UNKNOWN not in self.column_types
         equal_number_of_headers_and_column_types = len(self.headers) == len(self.column_types)
-        return self.headers and self.column_types and equal_number_of_headers_and_column_types and columns_valid
+        return len(self.headers) != 0 and len(self.column_types) != 0 and \
+            equal_number_of_headers_and_column_types and columns_valid
