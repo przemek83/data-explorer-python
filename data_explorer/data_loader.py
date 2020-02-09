@@ -10,16 +10,16 @@ TDataLoader = TypeVar('TDataLoader', bound='DataLoader')
 class DataLoader:
     @abc.abstractmethod
     def load(self: TDataLoader) -> bool:
-        return False
+        """abstract"""
 
     @abc.abstractmethod
     def get_headers(self) -> List[str]:
-        return []
+        """abstract"""
 
     @abc.abstractmethod
     def get_column_types(self) -> List[Column]:
-        return []
+        """abstract"""
 
     @abc.abstractmethod
     def get_data(self) -> List[List[Any]]:
-        return []
+        """abstract"""
