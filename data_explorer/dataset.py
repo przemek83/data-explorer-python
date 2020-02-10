@@ -15,8 +15,8 @@ class Operation(Enum):
 @dataclass
 class Query:
     operation: Operation
-    aggreagete_column_id: str
-    grouping_coulm_id: str
+    aggreagete_column_id: int
+    grouping_coulm_id: int
 
 
 class Dataset:
