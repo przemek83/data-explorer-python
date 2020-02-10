@@ -49,5 +49,4 @@ def test_get_column_id_from_name(mock_get_headers, mock_load) -> None:
     dataset.initialize()
     for i in range(3):
         assert dataset.get_column_id_from_name(headers[i]) == (True, i)
-
     assert dataset.get_column_id_from_name('d')[0] is False

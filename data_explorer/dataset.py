@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum
-from typing import Any, List
+from typing import Any, List, Tuple
 
 from column_type import Column
 from data_loader import DataLoader
@@ -34,7 +34,7 @@ class Dataset:
         self.data = self.loader.get_data()
         return True
 
-    def get_column_id_from_name(self, name: str) -> (bool, int):
+    def get_column_id_from_name(self, name: str) -> Tuple[bool, int]:
         try:
             index = self.headers.index(name)
             return True, index
