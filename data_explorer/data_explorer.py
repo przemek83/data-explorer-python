@@ -2,6 +2,7 @@ import argparse
 import sys
 from timeit import default_timer as timer
 
+from dataset import Dataset
 import file_data_loader
 
 
@@ -24,12 +25,11 @@ def main() -> None:
     try:
         with open(args.file, 'r') as file:
             loader = file_data_loader.FileDataLoader(file)
-            success = loader.load()
-            headers = loader.get_headers()
-
+            dataset = Dataset(loader)
+            success = dataset.initialize()
             if success:
-                print('Data loaded, headers count %d:, action: <%s> <%s> grouped by <%s>' %
-                      (len(headers), args.operation, args.aggregation, args.grouping))
+                print('Data loaded, action: <%s> <%s> grouped by <%s>' %
+                      (args.operation, args.aggregation, args.grouping))
 
     except OSError:
         print('Cannot open ' + args.file + ' file, exiting.', file=sys.stderr)
