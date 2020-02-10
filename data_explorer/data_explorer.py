@@ -2,15 +2,15 @@ import argparse
 import sys
 from timeit import default_timer as timer
 
-from dataset import Dataset
-import file_data_loader
+from dataset import Dataset, Operation
+from file_data_loader import FileDataLoader
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description='Small tool for aggregating and grouping data.')
     parser.add_argument('file', type=str, help='Input file')
     parser.add_argument('operation',
-                        choices=['avg', 'min', 'max'],
+                        choices=[op.value for op in Operation],
                         type=str, help='Arythmetic operation to perform')
     parser.add_argument('aggregation', type=str, help='Aggregation column (numerical only)')
     parser.add_argument('grouping', type=str, help='Grouping by column')
@@ -24,7 +24,7 @@ def main() -> None:
     begin = timer()
     try:
         with open(args.file, 'r') as file:
-            loader = file_data_loader.FileDataLoader(file)
+            loader = FileDataLoader(file)
             dataset = Dataset(loader)
             success = dataset.initialize()
             if success:
