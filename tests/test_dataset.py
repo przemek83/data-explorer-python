@@ -37,3 +37,15 @@ def test_loaded_content(mock_get_data, mock_get_column_types, mock_get_headers, 
     assert dataset.headers == headers
     assert dataset.column_types == column_types
     assert dataset.data == data
+
+
+@patch('file_data_loader.FileDataLoader.load')
+@patch('file_data_loader.FileDataLoader.get_headers')
+def test_get_column_id_from_name(mock_get_headers, mock_load) -> None:
+    mock_load.return_value = True
+    headers = ['a', 'b', 'c']
+    mock_get_headers.return_value = headers
+    dataset = Dataset(FileDataLoader(io.StringIO('')))
+    dataset.initialize()
+    for i in range(3):
+        assert dataset.get_column_id_from_name(headers[i]) == i

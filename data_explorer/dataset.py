@@ -34,5 +34,8 @@ class Dataset:
         self.data = self.loader.get_data()
         return True
 
+    def get_column_id_from_name(self, name: str) -> int:
+        pass
+
     def execute_query(self, query: Query) -> float:
         pass
