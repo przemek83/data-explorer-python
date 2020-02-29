@@ -2,7 +2,7 @@ import argparse
 import sys
 from timeit import default_timer as timer
 
-from dataset import Dataset, Operation
+from dataset import Dataset, OperationType
 from file_data_loader import FileDataLoader
 
 
@@ -10,7 +10,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description='Small tool for aggregating and grouping data.')
     parser.add_argument('file', type=str, help='Input file')
     parser.add_argument('operation',
-                        choices=[op.value for op in Operation],
+                        choices=[op.value for op in OperationType],
                         type=str.lower, help='Arythmetic operation to perform')
     parser.add_argument('aggregation', type=str, help='Aggregation column (numerical only)')
     parser.add_argument('grouping', type=str, help='Grouping by column')

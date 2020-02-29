@@ -6,7 +6,7 @@ from column_type import Column
 from data_loader import DataLoader
 
 
-class Operation(Enum):
+class OperationType(Enum):
     AVG = 'avg'
     MIN = 'min'
     MAX = 'max'
@@ -14,7 +14,7 @@ class Operation(Enum):
 
 @dataclass
 class Query:
-    operation: Operation
+    operation_type: OperationType
     aggreagete_column_id: int
     grouping_coulm_id: int
 
@@ -40,6 +40,3 @@ class Dataset:
             return True, index
         except ValueError:
             return False, -1
-
-    def execute_query(self, query: Query) -> float:
-        pass
