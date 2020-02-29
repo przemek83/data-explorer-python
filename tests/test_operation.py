@@ -9,3 +9,11 @@ def test_column_name_to_id(dataset, mock_dataset_column_name_to_id) -> None:
     mock_dataset_column_name_to_id.return_value = True, 1
     operation = Operation(dataset)
     assert (True, 1) == operation.column_name_to_id('something')
+
+
+@patch('dataset.Dataset.column_id_to_name')
+@patch('dataset.Dataset')
+def test_column_id_to_name(dataset, mock_dataset_column_id_to_name) -> None:
+    mock_dataset_column_id_to_name.return_value = (True, 'something')
+    operation = Operation(dataset)
+    assert (True, 'something') == operation.column_id_to_name(1)
