@@ -34,7 +34,7 @@ class Dataset:
         self.data = self.loader.get_data()
         return True
 
-    def get_column_id_from_name(self, name: str) -> Tuple[bool, int]:
+    def column_name_to_id(self, name: str) -> Tuple[bool, int]:
         try:
             index = self.headers.index(name)
             return True, index

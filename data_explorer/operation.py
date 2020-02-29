@@ -10,8 +10,8 @@ class Operation:
     def execute(self, query: Query) -> Dict[int, float]:
         pass
 
-    def get_column_name_to_id(self, column_id: int) -> str:
+    def column_id_to_name(self, column_id: int) -> str:
         pass
 
-    def get_column_id_to_name(self, column_name: str) -> Tuple[bool, int]:
-        return self._dataset.get_column_id_from_name(column_name)
+    def column_name_to_id(self, column_name: str) -> Tuple[bool, int]:
+        return self._dataset.column_name_to_id(column_name)
