@@ -30,13 +30,16 @@ def test_loaded_content(mock_get_data, mock_get_column_types, mock_get_headers, 
     mock_get_headers.return_value = headers
     column_types = [Column.INTEGER, Column.INTEGER, Column.STRING]
     mock_get_column_types.return_value = column_types
-    data = [['d', 'e', 'f']]
+    data = [['d', 'e', 'f'], ['g', 'h', 'i'], ['j', 'k', 'l']]
     mock_get_data.return_value = data
     dataset = Dataset(FileDataLoader(io.StringIO('')))
     dataset.initialize()
-    assert dataset.headers == headers
-    assert dataset.column_types == column_types
-    assert dataset.data == data
+    for i, header in enumerate(headers, 0):
+        assert dataset.column_id_to_name(i) == (True, header)
+    for i, column_type in enumerate(column_types, 0):
+        assert dataset.get_column_type(i) == (True, column_type)
+    for i, data_column in enumerate(data, 0):
+        assert dataset.get_data(i) == (True, data_column)
 
 
 @patch('file_data_loader.FileDataLoader.load')
@@ -63,3 +66,29 @@ def test_column_id_to_name(mock_get_headers, mock_load) -> None:
     for i in range(3):
         assert dataset.column_id_to_name(i) == (True, headers[i])
     assert dataset.column_id_to_name(3)[0] is False
+
+
+@patch('file_data_loader.FileDataLoader.load')
+@patch('file_data_loader.FileDataLoader.get_column_types')
+def test_get_column_type(mock_get_column_types, mock_load) -> None:
+    mock_load.return_value = True
+    columns = [Column.INTEGER, Column.INTEGER, Column.STRING]
+    mock_get_column_types.return_value = columns
+    dataset = Dataset(FileDataLoader(io.StringIO('')))
+    dataset.initialize()
+    for i in range(3):
+        assert dataset.get_column_type(i) == (True, columns[i])
+    assert dataset.get_column_type(3) == (False, Column.UNKNOWN)
+
+
+@patch('file_data_loader.FileDataLoader.load')
+@patch('file_data_loader.FileDataLoader.get_data')
+def test_get_data(mock_get_data, mock_load) -> None:
+    mock_load.return_value = True
+    data = [['d', 'e', 'f'], ['g', 'h', 'i'], ['j', 'k', 'l']]
+    mock_get_data.return_value = data
+    dataset = Dataset(FileDataLoader(io.StringIO('')))
+    dataset.initialize()
+    for i in range(3):
+        assert dataset.get_data(i) == (True, data[i])
+    assert dataset.get_data(3)[0] is False
