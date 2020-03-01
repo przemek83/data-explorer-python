@@ -6,7 +6,7 @@ from dataset import Dataset, OperationType
 from file_data_loader import FileDataLoader
 
 
-def parse_args() -> argparse.Namespace:
+def parse_args(args) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description='Small tool for aggregating and grouping data.')
     parser.add_argument('file', type=str, help='Input file')
     parser.add_argument('operation',
@@ -15,11 +15,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument('aggregation', type=str, help='Aggregation column (numerical only)')
     parser.add_argument('grouping', type=str, help='Grouping by column')
 
-    return parser.parse_args()
+    return parser.parse_args(args)
 
 
 def main() -> None:
-    args = parse_args()
+    args = parse_args(sys.argv[1:])
 
     begin = timer()
     try:
@@ -40,4 +40,5 @@ def main() -> None:
     print('Data loaded in %.6fs' % (end - begin))
 
 
-main()
+if __name__ == '__main__':
+    main()
