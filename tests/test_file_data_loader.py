@@ -1,19 +1,10 @@
 import io
 
 from column_type import ColumnType
+from data import VALID_DATA_INPUT
 from file_data_loader import FileDataLoader
 import pytest  # type: ignore
 
-VALID_DATA_INPUT = """\
-first_name;age;movie_name;score
-string;integer;string;integer
-tim;26;inception;8
-tim;26;pulp_fiction;8
-tamas;44;inception;7
-tamas;44;pulp_fiction;4
-dave;0;inception;8
-dave;0;ender's_game;8
-"""
 
 EMPTY_DATA_INPUT = ''
 
@@ -63,12 +54,10 @@ class TestFileDataLoader:
         loader = self.__get_loader(VALID_DATA_INPUT)
         loader.load()
         data = loader.get_data()
-        assert data == [['tim', '26', 'inception', '8'],
-                        ['tim', '26', 'pulp_fiction', '8'],
-                        ['tamas', '44', 'inception', '7'],
-                        ['tamas', '44', 'pulp_fiction', '4'],
-                        ['dave', '0', 'inception', '8'],
-                        ['dave', '0', "ender's_game", '8']]
+        assert data == [['tim', 'tim', 'tamas', 'tamas', 'dave', 'dave'],
+                        ['26', '26', '44', '44', '0', '0'],
+                        ['inception', 'pulp_fiction', 'inception', 'pulp_fiction', 'inception', "ender's_game"],
+                        ['8', '8', '7', '4', '8', '8']]
 
     @pytest.mark.parametrize('input_string',
                              [EMPTY_DATA_INPUT, INPUT_WITH_WRONG_COLUMN_NAME, INPUT_WITH_WRONG_COLUMN_COUNT])
