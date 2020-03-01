@@ -39,7 +39,7 @@ class Dataset:
             index = self.__headers.index(name)
             return True, index
         except ValueError:
-            return False, -1
+            return False, len(self.__headers)
 
     def column_id_to_name(self, column_id: int) -> Tuple[bool, str]:
         try:

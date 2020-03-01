@@ -21,13 +21,20 @@ class FileDataLoader(data_loader.DataLoader):
                 self.__load_column_types(line.split(';'))
                 continue
             data_values = line.rstrip('\n').split(';')
-            for index, value in enumerate(data_values):
-                try:
-                    self.__data[index].append(value)
-                except IndexError:
-                    self.__data.append([value])
-
+            try:
+                self.__add_line_into_data(data_values)
+            except ValueError:
+                return False
         return self.__loaded_data_ok()
+
+    def __add_line_into_data(self, data_values):
+        for index, value in enumerate(data_values):
+            if len(self.__data) <= index:
+                self.__data.append(list())
+            if self.__column_types[index] == ColumnType.INTEGER:
+                self.__data[index].append(int(value))
+            else:
+                self.__data[index].append(value)
 
     def get_headers(self) -> List[str]:
         return self.__headers

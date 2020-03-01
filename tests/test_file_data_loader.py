@@ -8,7 +8,7 @@ import pytest  # type: ignore
 
 EMPTY_DATA_INPUT = ''
 
-INPUT_WITH_WRONG_COLUMN_NAME = """\
+INPUT_WITH_WRONG_COLUMN_TYPE_NAME = """\
 bla;bla;bla;bla
 string;integer;bla;integer
 tim;26;inception;8
@@ -55,12 +55,12 @@ class TestFileDataLoader:
         loader.load()
         data = loader.get_data()
         assert data == [['tim', 'tim', 'tamas', 'tamas', 'dave', 'dave'],
-                        ['26', '26', '44', '44', '0', '0'],
+                        [26, 26, 44, 44, 0, 0],
                         ['inception', 'pulp_fiction', 'inception', 'pulp_fiction', 'inception', "ender's_game"],
-                        ['8', '8', '7', '4', '8', '8']]
+                        [8, 8, 7, 4, 8, 8]]
 
     @pytest.mark.parametrize('input_string',
-                             [EMPTY_DATA_INPUT, INPUT_WITH_WRONG_COLUMN_NAME, INPUT_WITH_WRONG_COLUMN_COUNT])
+                             [EMPTY_DATA_INPUT, INPUT_WITH_WRONG_COLUMN_TYPE_NAME, INPUT_WITH_WRONG_COLUMN_COUNT])
     def test_load_invalid_file(self, input_string: str) -> None:
         loader = self.__get_loader(input_string)
         success = loader.load()
