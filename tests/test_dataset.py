@@ -1,7 +1,7 @@
 import io
 from unittest.mock import patch
 
-from column_type import Column
+from column_type import ColumnType
 from dataset import Dataset
 from file_data_loader import FileDataLoader
 
@@ -28,7 +28,7 @@ def test_loaded_content(mock_get_data, mock_get_column_types, mock_get_headers, 
     mock_load.return_value = True
     headers = ['a', 'b', 'c']
     mock_get_headers.return_value = headers
-    column_types = [Column.INTEGER, Column.INTEGER, Column.STRING]
+    column_types = [ColumnType.INTEGER, ColumnType.INTEGER, ColumnType.STRING]
     mock_get_column_types.return_value = column_types
     data = [['d', 'e', 'f'], ['g', 'h', 'i'], ['j', 'k', 'l']]
     mock_get_data.return_value = data
@@ -72,13 +72,13 @@ def test_column_id_to_name(mock_get_headers, mock_load) -> None:
 @patch('file_data_loader.FileDataLoader.get_column_types')
 def test_get_column_type(mock_get_column_types, mock_load) -> None:
     mock_load.return_value = True
-    columns = [Column.INTEGER, Column.INTEGER, Column.STRING]
+    columns = [ColumnType.INTEGER, ColumnType.INTEGER, ColumnType.STRING]
     mock_get_column_types.return_value = columns
     dataset = Dataset(FileDataLoader(io.StringIO('')))
     dataset.initialize()
     for i in range(3):
         assert dataset.get_column_type(i) == (True, columns[i])
-    assert dataset.get_column_type(3) == (False, Column.UNKNOWN)
+    assert dataset.get_column_type(3) == (False, ColumnType.UNKNOWN)
 
 
 @patch('file_data_loader.FileDataLoader.load')

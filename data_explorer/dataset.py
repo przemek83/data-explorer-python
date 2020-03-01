@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Any, List, Tuple
 
-from column_type import Column
+from column_type import ColumnType
 from data_loader import DataLoader
 
 
@@ -23,7 +23,7 @@ class Dataset:
     def __init__(self, loader: DataLoader):
         self._loader: DataLoader = loader
         self._headers: List[str] = list()
-        self._column_types: List[Column] = list()
+        self._column_types: List[ColumnType] = list()
         self._data: List[List[Any]] = list()
 
     def initialize(self) -> bool:
@@ -48,12 +48,12 @@ class Dataset:
         except IndexError:
             return False, ''
 
-    def get_column_type(self, column_id: int) -> Tuple[bool, Column]:
+    def get_column_type(self, column_id: int) -> Tuple[bool, ColumnType]:
         try:
             column = self._column_types[column_id]
             return True, column
         except IndexError:
-            return False, Column.UNKNOWN
+            return False, ColumnType.UNKNOWN
 
     def get_data(self, column_id: int) -> Tuple[bool, List[Any]]:
         try:

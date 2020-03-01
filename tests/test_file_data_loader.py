@@ -1,6 +1,6 @@
 import io
 
-from column_type import Column
+from column_type import ColumnType
 from file_data_loader import FileDataLoader
 import pytest  # type: ignore
 
@@ -57,7 +57,7 @@ class TestFileDataLoader:
         loader = self.__get_loader(VALID_DATA_INPUT)
         loader.load()
         columns = loader.get_column_types()
-        assert columns == [Column.STRING, Column.INTEGER, Column.STRING, Column.INTEGER]
+        assert columns == [ColumnType.STRING, ColumnType.INTEGER, ColumnType.STRING, ColumnType.INTEGER]
 
     def test_data_valid_file(self) -> None:
         loader = self.__get_loader(VALID_DATA_INPUT)

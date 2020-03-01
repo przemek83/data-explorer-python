@@ -1,7 +1,7 @@
 import abc
 from typing import Any, List, TypeVar
 
-from column_type import Column
+from column_type import ColumnType
 
 
 TDataLoader = TypeVar('TDataLoader', bound='DataLoader')
@@ -17,7 +17,7 @@ class DataLoader:
         """abstract"""
 
     @abc.abstractmethod
-    def get_column_types(self) -> List[Column]:
+    def get_column_types(self) -> List[ColumnType]:
         """abstract"""
 
     @abc.abstractmethod
