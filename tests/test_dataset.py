@@ -1,4 +1,5 @@
 import io
+from typing import Any, List
 from unittest.mock import patch
 
 from column_type import ColumnType
@@ -42,14 +43,19 @@ def test_loaded_content(mock_get_data, mock_get_column_types, mock_get_headers, 
         assert dataset.get_data(i) == (True, data_column)
 
 
+def prepare_dataset(load_mock, data_mock, expected_data) -> Dataset:
+    load_mock.return_value = True
+    data_mock.return_value = expected_data
+    dataset = Dataset(FileDataLoader(io.StringIO('')))
+    dataset.initialize()
+    return dataset
+
+
 @patch('file_data_loader.FileDataLoader.load')
 @patch('file_data_loader.FileDataLoader.get_headers')
 def test_column_name_to_id(mock_get_headers, mock_load) -> None:
-    mock_load.return_value = True
     headers = ['a', 'b', 'c']
-    mock_get_headers.return_value = headers
-    dataset = Dataset(FileDataLoader(io.StringIO('')))
-    dataset.initialize()
+    dataset = prepare_dataset(mock_load, mock_get_headers, headers)
     for i in range(3):
         assert dataset.column_name_to_id(headers[i]) == (True, i)
     assert dataset.column_name_to_id('d')[0] is False
@@ -58,11 +64,8 @@ def test_column_name_to_id(mock_get_headers, mock_load) -> None:
 @patch('file_data_loader.FileDataLoader.load')
 @patch('file_data_loader.FileDataLoader.get_headers')
 def test_column_id_to_name(mock_get_headers, mock_load) -> None:
-    mock_load.return_value = True
-    headers = ['a', 'b', 'c']
-    mock_get_headers.return_value = headers
-    dataset = Dataset(FileDataLoader(io.StringIO('')))
-    dataset.initialize()
+    headers: List[str] = ['a', 'b', 'c']
+    dataset = prepare_dataset(mock_load, mock_get_headers, headers)
     for i in range(3):
         assert dataset.column_id_to_name(i) == (True, headers[i])
     assert dataset.column_id_to_name(3)[0] is False
@@ -71,11 +74,8 @@ def test_column_id_to_name(mock_get_headers, mock_load) -> None:
 @patch('file_data_loader.FileDataLoader.load')
 @patch('file_data_loader.FileDataLoader.get_column_types')
 def test_get_column_type(mock_get_column_types, mock_load) -> None:
-    mock_load.return_value = True
-    columns = [ColumnType.INTEGER, ColumnType.INTEGER, ColumnType.STRING]
-    mock_get_column_types.return_value = columns
-    dataset = Dataset(FileDataLoader(io.StringIO('')))
-    dataset.initialize()
+    columns: List[ColumnType] = [ColumnType.INTEGER, ColumnType.INTEGER, ColumnType.STRING]
+    dataset = prepare_dataset(mock_load, mock_get_column_types, columns)
     for i in range(3):
         assert dataset.get_column_type(i) == (True, columns[i])
     assert dataset.get_column_type(3) == (False, ColumnType.UNKNOWN)
@@ -84,11 +84,8 @@ def test_get_column_type(mock_get_column_types, mock_load) -> None:
 @patch('file_data_loader.FileDataLoader.load')
 @patch('file_data_loader.FileDataLoader.get_data')
 def test_get_data(mock_get_data, mock_load) -> None:
-    mock_load.return_value = True
-    data = [['d', 'e', 'f'], ['g', 'h', 'i'], ['j', 'k', 'l']]
-    mock_get_data.return_value = data
-    dataset = Dataset(FileDataLoader(io.StringIO('')))
-    dataset.initialize()
+    data: List[List[Any]] = [['d', 'e', 'f'], ['g', 'h', 'i'], ['j', 'k', 'l']]
+    dataset = prepare_dataset(mock_load, mock_get_data, data)
     for i in range(3):
         assert dataset.get_data(i) == (True, data[i])
     assert dataset.get_data(3)[0] is False
