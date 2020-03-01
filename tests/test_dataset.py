@@ -43,9 +43,9 @@ def test_loaded_content(mock_get_data, mock_get_column_types, mock_get_headers, 
         assert dataset.get_data(i) == (True, data_column)
 
 
-def prepare_dataset(load_mock, data_mock, expected_data) -> Dataset:
-    load_mock.return_value = True
-    data_mock.return_value = expected_data
+def prepare_dataset(mock_load, mock_data, expected_data) -> Dataset:
+    mock_load.return_value = True
+    mock_data.return_value = expected_data
     dataset = Dataset(FileDataLoader(io.StringIO('')))
     dataset.initialize()
     return dataset
