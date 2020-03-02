@@ -1,6 +1,8 @@
 import argparse
+from unittest.mock import mock_open, patch
 
-from data_explorer.data_explorer import parse_args
+from data import VALID_DATA_INPUT
+from data_explorer.data_explorer import load_data, parse_args
 import pytest  # type: ignore
 
 
@@ -24,3 +26,20 @@ def test_parse_invalid_operation(params) -> None:
         assert False
     except SystemExit:
         pass
+
+
+@patch('builtins.open')
+def test_load_data_invalid_file(mocked_open) -> None:
+    mocked_open.side_effect = OSError
+    try:
+        load_data('')
+        assert False
+    except SystemExit:
+        pass
+
+
+@patch('builtins.open', new_callable=mock_open, read_data=VALID_DATA_INPUT)
+@patch('dataset.Dataset.initialize')
+def test_load_data_valid_file(dataset_initialize, _) -> None:
+    load_data('')
+    dataset_initialize.assert_called()
