@@ -2,7 +2,8 @@ import argparse
 from unittest.mock import mock_open, patch
 
 from data import VALID_DATA_INPUT
-from data_explorer.data_explorer import load_data, parse_args
+from data_explorer.data_explorer import create_query, get_column_id, load_data, parse_args
+from operation import Operation, OperationType
 import pytest  # type: ignore
 
 
@@ -43,3 +44,31 @@ def test_load_data_invalid_file(mocked_open) -> None:
 def test_load_data_valid_file(dataset_initialize, _) -> None:
     load_data('')
     dataset_initialize.assert_called()
+
+
+@pytest.mark.parametrize('column_name_to_id_return_value', [(False, 4)])
+@patch('operation.Operation.column_name_to_id')
+@patch('dataset.Dataset')
+def test_get_column_id_invalid_column(mock_dataset, mock_column_name_to_id, column_name_to_id_return_value) -> None:
+    mock_column_name_to_id.return_value = column_name_to_id_return_value
+    try:
+        get_column_id(Operation(mock_dataset), 'column1')
+        assert False
+    except SystemExit:
+        pass
+
+
+@patch('operation.Operation.column_name_to_id')
+@patch('dataset.Dataset')
+def test_create_query(mock_dataset, mock_column_name_to_id) -> None:
+    expected_aggreagete_column_id = 3
+    expected_grouping_column_id = 4
+    mock_column_name_to_id.side_effect = [(True, expected_aggreagete_column_id), (True, expected_grouping_column_id)]
+    args = argparse.Namespace()
+    args.operation = 'min'
+    args.aggregation = 'column1'
+    args.grouping = 'column2'
+    query = create_query(Operation(mock_dataset), args)
+    assert query.operation_type == OperationType.MIN
+    assert query.aggreagete_column_id == expected_aggreagete_column_id
+    assert query.grouping_column_id == expected_grouping_column_id

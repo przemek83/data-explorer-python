@@ -31,6 +31,21 @@ def load_data(file_name: str) -> Dataset:
     return dataset
 
 
+def get_column_id(operation: Operation, column_name: str) -> int:
+    column_found, column_id = operation.column_name_to_id(column_name)
+    if not column_found:
+        print('Column ' + column_name + ' not found.', file=sys.stderr)
+        sys.exit(-1)
+    return column_id
+
+
+def create_query(operation: Operation, args: argparse.Namespace) -> Query:
+    aggreagete_column_id = get_column_id(operation, args.aggregation)
+    grouping_column_id = get_column_id(operation, args.grouping)
+    operation_type = OperationType(args.operation)
+    return Query(operation_type, aggreagete_column_id, grouping_column_id)
+
+
 def main() -> None:
     args = parse_args(sys.argv[1:])
 
