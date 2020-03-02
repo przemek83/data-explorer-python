@@ -53,9 +53,7 @@ def main() -> None:
         dataset = load_data(args.file)
 
     operation = Operation(dataset)
-    query = Query(OperationType(args.operation),
-                  operation.column_name_to_id(args.aggregation)[1],
-                  operation.column_name_to_id(args.grouping)[1])
+    query = create_query(operation, args)
     with PerformanceChecker('Operation'):
         results = operation.execute(query)
 
