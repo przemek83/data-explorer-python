@@ -16,7 +16,8 @@ def test_parse_valid_args(params) -> None:
 
 
 @pytest.mark.parametrize('params', [['sample.txt', 'bla', 'score', 'movie_name'],
-                                    ['some_file.txt', '', 'other_score', 'other_movie_name']])
+                                    ['some_file.txt', '', 'other_score', 'other_movie_name'],
+                                    ['some_file.txt', 'max', 'other_score']])
 def test_parse_invalid_operation(params) -> None:
     try:
         parse_args(params)
