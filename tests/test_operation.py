@@ -2,7 +2,7 @@ import io
 from typing import Dict
 from unittest.mock import patch
 
-from data import VALID_DATA_INPUT
+from data import VALID_DATA_INPUT  # type: ignore
 from dataset import Dataset, OperationType, Query
 from file_data_loader import FileDataLoader
 from operation import Operation

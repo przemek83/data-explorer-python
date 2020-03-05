@@ -1,7 +1,7 @@
 import io
 
 from column_type import ColumnType
-from data import VALID_DATA_INPUT
+from data import VALID_DATA_INPUT  # type: ignore
 from file_data_loader import FileDataLoader
 import pytest  # type: ignore
 
