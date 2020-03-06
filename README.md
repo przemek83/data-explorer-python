@@ -52,4 +52,4 @@ I've used Tox for static analysis and testing. Following tools are used as of 6.
 + bandit
 + cov-report
 
-To launch tox sequence of checks install it and type `tox` in project dir
+To launch tox sequence of checks install it and type `tox` in project dir.
