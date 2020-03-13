@@ -44,7 +44,7 @@ dave;0;ender's_game;8
 Such simple and strict format of data was used for simplicity of parsing.
 
 # Tox
-I've used Tox for static analysis and testing. Following tools are used as of 6.03.2020:  
+I've used Tox for static analysis and testing. Following tools are used:  
 + flake8  
 + mypy  
 + pylint  
