@@ -12,7 +12,7 @@ def parse_args(args) -> argparse.Namespace:
     parser.add_argument('file', type=str, help='Input file')
     parser.add_argument('operation',
                         choices=[op.value for op in OperationType],
-                        type=str.lower, help='Arythmetic operation to perform')
+                        type=str.lower, help='Arithmetic operation to perform')
     parser.add_argument('aggregation', type=str, help='Aggregation column (numerical only)')
     parser.add_argument('grouping', type=str, help='Grouping by column')
 

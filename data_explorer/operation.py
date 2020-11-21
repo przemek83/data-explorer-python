@@ -8,7 +8,7 @@ class Operation:
         self.__dataset: Dataset = dataset
 
     def execute(self, query: Query) -> Dict[str, float]:
-        data_ok, aggregation_data = self.__dataset.get_data(query.aggreagete_column_id)
+        data_ok, aggregation_data = self.__dataset.get_data(query.aggregate_column_id)
         if not data_ok:
             return {}
         data_ok, grouping_data = self.__dataset.get_data(query.grouping_column_id)
@@ -32,14 +32,14 @@ class Operation:
 
     @staticmethod
     def __compute_min(aggregation_data, grouping_data) -> Dict[str, float]:
-        return Operation.__compute_extremum(aggregation_data, grouping_data, lambda a, b: a > b)
+        return Operation.__compute_extreme(aggregation_data, grouping_data, lambda a, b: a > b)
 
     @staticmethod
     def __compute_max(aggregation_data, grouping_data) -> Dict[str, float]:
-        return Operation.__compute_extremum(aggregation_data, grouping_data, lambda a, b: a < b)
+        return Operation.__compute_extreme(aggregation_data, grouping_data, lambda a, b: a < b)
 
     @staticmethod
-    def __compute_extremum(aggregation_data, grouping_data, func) -> Dict[str, float]:
+    def __compute_extreme(aggregation_data, grouping_data, func) -> Dict[str, float]:
         results: Dict[str, float] = {}
         for index, aggregation in enumerate(aggregation_data):
             grouping = grouping_data[index]

@@ -70,5 +70,5 @@ def test_create_query(mock_dataset, mock_column_name_to_id) -> None:
     args.grouping = 'column2'
     query = create_query(Operation(mock_dataset), args)
     assert query.operation_type == OperationType.MIN
-    assert query.aggreagete_column_id == expected_aggreagete_column_id
+    assert query.aggregate_column_id == expected_aggreagete_column_id
     assert query.grouping_column_id == expected_grouping_column_id

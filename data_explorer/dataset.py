@@ -15,7 +15,7 @@ class OperationType(Enum):
 @dataclass
 class Query:
     operation_type: OperationType
-    aggreagete_column_id: int
+    aggregate_column_id: int
     grouping_column_id: int
 
 
