@@ -40,10 +40,10 @@ def get_column_id(operation: Operation, column_name: str) -> int:
 
 
 def create_query(operation: Operation, args: argparse.Namespace) -> Query:
-    aggreagete_column_id = get_column_id(operation, args.aggregation)
+    aggregate_column_id = get_column_id(operation, args.aggregation)
     grouping_column_id = get_column_id(operation, args.grouping)
     operation_type = OperationType(args.operation)
-    return Query(operation_type, aggreagete_column_id, grouping_column_id)
+    return Query(operation_type, aggregate_column_id, grouping_column_id)
 
 
 def main() -> None:
