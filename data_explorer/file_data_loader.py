@@ -20,7 +20,7 @@ class FileDataLoader(data_loader.DataLoader):
             if not self.__column_types:
                 self.__load_column_types(line.split(';'))
                 continue
-            data_values = line.rstrip('\n').split(';')
+            data_values = line.split(';')
             try:
                 self.__add_line_into_data(data_values)
             except ValueError:
