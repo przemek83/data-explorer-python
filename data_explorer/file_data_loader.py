@@ -13,16 +13,15 @@ class FileDataLoader(data_loader.DataLoader):
 
     def load(self) -> bool:
         for line in self.__input_file:
-            line = line.rstrip('\n')
+            values = line.rstrip('\n').split(';')
             if not self.__headers:
-                self.__headers = line.split(';')
+                self.__headers = values
                 continue
             if not self.__column_types:
-                self.__load_column_types(line.split(';'))
+                self.__load_column_types(values)
                 continue
-            data_values = line.split(';')
             try:
-                self.__add_line_into_data(data_values)
+                self.__add_line_into_data(values)
             except ValueError:
                 return False
         return self.__loaded_data_ok()
