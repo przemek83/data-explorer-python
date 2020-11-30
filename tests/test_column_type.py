@@ -17,5 +17,5 @@ def test_empty_string() -> None:
 
 
 def test_incorrect_type() -> None:
-    column = column_type_from_string('')
+    column = column_type_from_string('bla')
     assert column is ColumnType.UNKNOWN
