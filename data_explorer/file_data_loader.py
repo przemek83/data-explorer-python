@@ -50,6 +50,4 @@ class FileDataLoader(data_loader.DataLoader):
 
     def __loaded_data_ok(self) -> bool:
         columns_valid = ColumnType.UNKNOWN not in self.__column_types
-        equal_number_of_headers_and_column_types = len(self.__headers) == len(self.__column_types)
-        return len(self.__headers) != 0 and len(self.__column_types) != 0 and \
-            equal_number_of_headers_and_column_types and columns_valid
+        return len(self.__headers) != 0 and len(self.__headers) == len(self.__column_types) and columns_valid
