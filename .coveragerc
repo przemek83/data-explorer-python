@@ -1,3 +1,4 @@
 [run]
 include = */data_explorer/*
 omit = setup.py, *tests*
+disable_warnings=include-ignored
