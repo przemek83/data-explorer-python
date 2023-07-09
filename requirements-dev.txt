@@ -1,11 +1,6 @@
-pytest
-pytest-cov
-pytest-mypy
-flake8
-pep8-naming
-flake8-quotes
-flake8-import-order
-mypy-extensions
-pylint
+pytest-cov==4.1.0
+flake8==5.0.4
+mypy==1.4.1 
+pylint==2.17.4
 prospector==1.10.2
-bandit
+bandit==1.7.5
