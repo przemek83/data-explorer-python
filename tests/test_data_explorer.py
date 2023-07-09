@@ -2,7 +2,7 @@ import argparse
 from unittest.mock import mock_open, patch
 
 from data import VALID_DATA_INPUT  # type: ignore
-from data_explorer.data_explorer import create_query, get_column_id, load_data, parse_args
+from utils import create_query, get_column_id, load_data, parse_args
 from operation import Operation, OperationType
 import pytest  # type: ignore
 
