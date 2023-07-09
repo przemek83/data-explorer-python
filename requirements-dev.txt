@@ -7,5 +7,5 @@ flake8-quotes
 flake8-import-order
 mypy-extensions
 pylint
-prospector
+prospector==1.10.2
 bandit
