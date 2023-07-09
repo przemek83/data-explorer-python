@@ -29,7 +29,7 @@ class FileDataLoader(data_loader.DataLoader):
     def __add_line_into_data(self, data_values):
         for index, value in enumerate(data_values):
             if len(self.__data) <= index:
-                self.__data.append(list())
+                self.__data.append([])
             if self.__column_types[index] == ColumnType.INTEGER:
                 self.__data[index].append(int(value))
             else:

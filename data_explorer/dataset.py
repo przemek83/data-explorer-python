@@ -22,9 +22,9 @@ class Query:
 class Dataset:
     def __init__(self, loader: DataLoader):
         self.__loader: DataLoader = loader
-        self.__headers: List[str] = list()
-        self.__column_types: List[ColumnType] = list()
-        self.__data: List[List[Any]] = list()
+        self.__headers: List[str] = []
+        self.__column_types: List[ColumnType] = []
+        self.__data: List[List[Any]] = []
 
     def initialize(self) -> bool:
         if not self.__loader.load():
@@ -60,4 +60,4 @@ class Dataset:
             data = self.__data[column_id]
             return True, data
         except IndexError:
-            return False, list()
+            return False, []

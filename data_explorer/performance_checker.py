@@ -12,4 +12,4 @@ class PerformanceChecker:
 
     def __exit__(self, exc_type, exc_value, exc_tb):
         end = timer()
-        print('%s completed in %.6fs' % (self.__name, end - self.__begin))
+        print(f'{self.__name} completed in {end - self.__begin:.6f}')

@@ -4,12 +4,12 @@ from typing import Any, List, TypeVar
 from column_type import ColumnType
 
 
-TDataLoader = TypeVar('TDataLoader', bound='DataLoader')
+TypeDataLoader = TypeVar('TypeDataLoader', bound='DataLoader')
 
 
 class DataLoader:
     @abc.abstractmethod
-    def load(self: TDataLoader) -> bool:
+    def load(self: TypeDataLoader) -> bool:
         """abstract"""
 
     @abc.abstractmethod
