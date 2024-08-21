@@ -44,11 +44,10 @@ dave;0;ender's_game;8
 Such a simple and strict format of data was used for simplicity of parsing.
 
 # Tox
-For static analysis and testing, the Tox tool is used in Python 3.7 and Python 3.11 environments. The following tools are added for each Tox run:
+For static analysis and testing, the Tox tool is used in Python 3.8, 3.11 and 3.12 environments. The following tools are added for each Tox run:
 + flake8  
 + mypy  
 + pylint  
-+ prospector  
 + bandit
 + pytest code coverage report
 
