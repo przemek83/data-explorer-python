@@ -32,11 +32,15 @@ class Operation:
 
     @staticmethod
     def __compute_min(aggregation_data, grouping_data) -> Dict[str, float]:
-        return Operation.__compute_extreme(aggregation_data, grouping_data, lambda a, b: a > b)
+        return Operation.__compute_extreme(
+            aggregation_data, grouping_data, lambda a, b: a > b
+        )
 
     @staticmethod
     def __compute_max(aggregation_data, grouping_data) -> Dict[str, float]:
-        return Operation.__compute_extreme(aggregation_data, grouping_data, lambda a, b: a < b)
+        return Operation.__compute_extreme(
+            aggregation_data, grouping_data, lambda a, b: a < b
+        )
 
     @staticmethod
     def __compute_extreme(aggregation_data, grouping_data, func) -> Dict[str, float]:
@@ -52,9 +56,13 @@ class Operation:
 
     @staticmethod
     def __compute_avg(aggregation_data, grouping_data) -> Dict[str, float]:
-        entries_sum: Dict[str, Tuple[int, int]] = Operation.__sum_entries(aggregation_data, grouping_data)
+        entries_sum: Dict[str, Tuple[int, int]] = Operation.__sum_entries(
+            aggregation_data, grouping_data
+        )
         results: Dict[str, float] = {}
-        for _, (grouping, (calculated_count, calculated__sum)) in enumerate(entries_sum.items()):
+        for _, (grouping, (calculated_count, calculated__sum)) in enumerate(
+            entries_sum.items()
+        ):
             results[grouping] = calculated__sum / calculated_count
         return results
 
@@ -64,7 +72,10 @@ class Operation:
         for index, grouping in enumerate(grouping_data):
             if grouping in results:
                 current_values = results[grouping]
-                results[grouping] = (current_values[0] + 1, current_values[1] + aggregation_data[index])
+                results[grouping] = (
+                    current_values[0] + 1,
+                    current_values[1] + aggregation_data[index],
+                )
             else:
                 results[grouping] = (1, aggregation_data[index])
         return results

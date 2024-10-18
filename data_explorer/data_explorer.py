@@ -8,16 +8,16 @@ from utils import create_query, load_data, parse_args
 def main() -> None:
     args = parse_args(sys.argv[1:])
 
-    with PerformanceChecker('Data loading'):
+    with PerformanceChecker("Data loading"):
         dataset = load_data(args.file)
 
     operation = Operation(dataset)
     query = create_query(operation, args)
-    with PerformanceChecker('Operation'):
+    with PerformanceChecker("Operation"):
         results = operation.execute(query)
 
-    print('Results: ', results)
+    print("Results: ", results)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

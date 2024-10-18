@@ -1,7 +1,11 @@
+"""Module containing Time."""
+
 from timeit import default_timer as timer
 
 
 class PerformanceChecker:
+    """Performance checker in form of timer."""
+
     def __init__(self, name):
         self.__name = name
         self.__begin = None
@@ -12,4 +16,4 @@ class PerformanceChecker:
 
     def __exit__(self, exc_type, exc_value, exc_tb):
         end = timer()
-        print(f'{self.__name} completed in {end - self.__begin: .6f}')
+        print(f"{self.__name} completed in {end - self.__begin: .6f}")

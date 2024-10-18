@@ -13,7 +13,7 @@ class FileDataLoader(data_loader.DataLoader):
 
     def load(self) -> bool:
         for line in self.__input_file:
-            values = line.rstrip('\n').split(';')
+            values = line.rstrip("\n").split(";")
             if not self.__headers:
                 self.__headers = values
                 continue
@@ -50,4 +50,8 @@ class FileDataLoader(data_loader.DataLoader):
 
     def __loaded_data_ok(self) -> bool:
         columns_valid = ColumnType.UNKNOWN not in self.__column_types
-        return len(self.__headers) != 0 and len(self.__headers) == len(self.__column_types) and columns_valid
+        return (
+            len(self.__headers) != 0
+            and len(self.__headers) == len(self.__column_types)
+            and columns_valid
+        )

@@ -7,9 +7,9 @@ from data_loader import DataLoader
 
 
 class OperationType(Enum):
-    AVG = 'avg'
-    MIN = 'min'
-    MAX = 'max'
+    AVG = "avg"
+    MIN = "min"
+    MAX = "max"
 
 
 @dataclass
@@ -46,7 +46,7 @@ class Dataset:
             name = self.__headers[column_id]
             return True, name
         except IndexError:
-            return False, ''
+            return False, ""
 
     def get_column_type(self, column_id: int) -> Tuple[bool, ColumnType]:
         try:

@@ -1,13 +1,17 @@
+"""Module with interface for data loading."""
+
 import abc
 from typing import Any, List, TypeVar
 
 from column_type import ColumnType
 
 
-TypeDataLoader = TypeVar('TypeDataLoader', bound='DataLoader')
+TypeDataLoader = TypeVar("TypeDataLoader", bound="DataLoader")
 
 
 class DataLoader:
+    """Interface for data loading."""
+
     @abc.abstractmethod
     def load(self: TypeDataLoader) -> bool:
         """abstract"""
