@@ -1,3 +1,4 @@
 [MAIN]
 init-hook="import sys; sys.path.append("./data_explorer"); sys.path.append("./tests")"
-disable=missing-function-docstring
+disable=missing-function-docstring,
+        E0401
