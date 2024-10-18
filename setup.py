@@ -6,6 +6,6 @@ setup(
     description="Small tool for aggregating and grouping data.",
     packages=find_packages(),
     install_requires=["pytest"],
-    python_requires=">=3.7",
+    python_requires=">=3.8",
     url="https://github.com/przemek83/data-explorer-python",
 )
