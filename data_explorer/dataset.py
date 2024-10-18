@@ -1,3 +1,5 @@
+"""Module containing dataset related classes."""
+
 from dataclasses import dataclass
 from enum import Enum
 from typing import Any, List, Tuple
@@ -7,6 +9,8 @@ from data_loader import DataLoader
 
 
 class OperationType(Enum):
+    """Enum class with allowed operations on data."""
+
     AVG = "avg"
     MIN = "min"
     MAX = "max"
@@ -14,12 +18,16 @@ class OperationType(Enum):
 
 @dataclass
 class Query:
+    """Class defining user query."""
+
     operation_type: OperationType
     aggregate_column_id: int
     grouping_column_id: int
 
 
 class Dataset:
+    """Class allowing access to loaded, parsed and validated data."""
+
     def __init__(self, loader: DataLoader):
         self.__loader: DataLoader = loader
         self.__headers: List[str] = []
