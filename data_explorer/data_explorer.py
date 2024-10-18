@@ -1,3 +1,5 @@
+"""Main entry point of data explorer application."""
+
 import sys
 
 from operation import Operation

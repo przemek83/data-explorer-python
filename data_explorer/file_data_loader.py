@@ -1,3 +1,5 @@
+"""Module containing file data loading logic."""
+
 from typing import Any, List, TextIO
 
 from column_type import column_type_from_string, ColumnType
@@ -5,6 +7,8 @@ import data_loader
 
 
 class FileDataLoader(data_loader.DataLoader):
+    """Class having file data loading logic. Inherits DataLoader interface."""
+
     def __init__(self, input_file: TextIO):
         self.__input_file = input_file
         self.__headers: List[str] = []
