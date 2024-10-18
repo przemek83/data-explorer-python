@@ -1,3 +1,5 @@
+"""Tests for FileDataLoader class."""
+
 import io
 
 from column_type import ColumnType

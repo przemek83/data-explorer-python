@@ -1,3 +1,5 @@
+"""Tests for Operation class."""
+
 import io
 from typing import Dict
 from unittest.mock import patch
