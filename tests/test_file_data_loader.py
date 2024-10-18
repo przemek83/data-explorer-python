@@ -29,6 +29,8 @@ string;integer;integer
 
 
 class TestFileDataLoader:
+    """Test class covering FileDataLoader class functionalities."""
+
     @staticmethod
     def __get_loader(input_string: str) -> FileDataLoader:
         input_data = io.StringIO(input_string)

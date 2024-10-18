@@ -1,3 +1,5 @@
+"""Test data."""
+
 VALID_DATA_INPUT = """\
 first_name;age;movie_name;score
 string;integer;string;integer

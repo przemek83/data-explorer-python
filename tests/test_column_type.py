@@ -1,3 +1,5 @@
+"""Module covering tests of logic from ColumnType."""
+
 from column_type import column_type_from_string, ColumnType
 
 
