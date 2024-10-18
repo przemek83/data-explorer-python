@@ -1,9 +1,13 @@
+"""Module containing Operation class."""
+
 from typing import Dict, Tuple
 
 from dataset import Dataset, OperationType, Query
 
 
 class Operation:
+    """Class containing logic for executing given operation."""
+
     def __init__(self, dataset: Dataset):
         self.__dataset: Dataset = dataset
 

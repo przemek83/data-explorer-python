@@ -1,3 +1,5 @@
+"""Module with utility functions like loading data or parsing application args."""
+
 import argparse
 import sys
 

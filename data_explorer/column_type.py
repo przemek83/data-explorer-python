@@ -1,10 +1,14 @@
+"""Module containing column type related parts."""
+
 from enum import Enum
 
 
 class ColumnType(Enum):
-    INTEGER = 'integer'
-    STRING = 'string'
-    UNKNOWN = ''
+    """Enum class containing supported column types."""
+
+    INTEGER = "integer"
+    STRING = "string"
+    UNKNOWN = ""
 
 
 def column_type_from_string(column_type_string: str) -> ColumnType:
