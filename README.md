@@ -3,6 +3,12 @@
 [![Pylint](https://github.com/przemek83/data-explorer-python/actions/workflows/pylint.yml/badge.svg)](https://github.com/przemek83/data-explorer-python/actions/workflows/pylint.yml)
 [![codecov](https://codecov.io/gh/przemek83/data-explorer-python/graph/badge.svg?token=ICH6I6XNQ1)](https://codecov.io/gh/przemek83/data-explorer-python)
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=przemek83_data-explorer-python&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=przemek83_data-explorer-python)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=przemek83_data-explorer-python&metric=bugs)](https://sonarcloud.io/summary/new_code?id=przemek83_data-explorer-python)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=przemek83_data-explorer-python&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=przemek83_data-explorer-python)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=przemek83_data-explorer-python&metric=coverage)](https://sonarcloud.io/summary/new_code?id=przemek83_data-explorer-python)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=przemek83_data-explorer-python&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=przemek83_data-explorer-python)
+
 # About project
 Small tool for aggregating and grouping data. Written in Python, mimicking the functionality of my older C++ data-explorer project. Created to refresh Python skills, have some fun, exercise TDD and compare the speed of C++/Go/Python versions.
 
