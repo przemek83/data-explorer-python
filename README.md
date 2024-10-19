@@ -1,6 +1,7 @@
 [![Build & test](https://github.com/przemek83/data-explorer-python/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/przemek83/data-explorer-python/actions/workflows/build-and-test.yml)
 [![CodeQL](https://github.com/przemek83/data-explorer-python/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/przemek83/data-explorer-python/actions/workflows/github-code-scanning/codeql)
 [![Pylint](https://github.com/przemek83/data-explorer-python/actions/workflows/pylint.yml/badge.svg)](https://github.com/przemek83/data-explorer-python/actions/workflows/pylint.yml)
+[![codecov](https://codecov.io/gh/przemek83/data-explorer-python/graph/badge.svg?token=ICH6I6XNQ1)](https://codecov.io/gh/przemek83/data-explorer-python)
 
 # About project
 Small tool for aggregating and grouping data. Written in Python, mimicking the functionality of my older C++ data-explorer project. Created to refresh Python skills, have some fun, exercise TDD and compare the speed of C++/Go/Python versions.
