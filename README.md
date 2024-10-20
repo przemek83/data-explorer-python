@@ -9,6 +9,12 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=przemek83_data-explorer-python&metric=coverage)](https://sonarcloud.io/summary/new_code?id=przemek83_data-explorer-python)
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=przemek83_data-explorer-python&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=przemek83_data-explorer-python)
 
+# Table of content
+- [About project](#about-project)
+- [Usage ](#usage)
+- [Input data format](#input-data-format)
+- [Tox](#tox)
+
 # About project
 Small tool for aggregating and grouping data. Written in Python, mimicking the functionality of my older C++ data-explorer project. Created to refresh Python skills, have some fun, exercise TDD and compare the speed of C++/Go/Python versions.
 
