@@ -34,21 +34,15 @@ def test_parse_valid_args(params) -> None:
     ],
 )
 def test_parse_invalid_operation(params) -> None:
-    try:
+    with pytest.raises(SystemExit):
         parse_args(params)
-        pytest.fail("parse_args did not exit for invalid params")
-    except SystemExit:
-        pass
 
 
 @patch("builtins.open")
 def test_load_data_invalid_file(mocked_open) -> None:
     mocked_open.side_effect = OSError
-    try:
+    with pytest.raises(SystemExit):
         load_data("")
-        pytest.fail("load_data did not exit on invalid file")
-    except SystemExit:
-        pass
 
 
 @patch("builtins.open", new_callable=mock_open, read_data=VALID_DATA_INPUT)
@@ -65,11 +59,8 @@ def test_get_column_id_invalid_column(
     mock_dataset, mock_column_name_to_id, column_name_to_id_return_value
 ) -> None:
     mock_column_name_to_id.return_value = column_name_to_id_return_value
-    try:
+    with pytest.raises(SystemExit):
         get_column_id(Operation(mock_dataset), "column1")
-        pytest.fail("get_column_id did not exit for invalid column")
-    except SystemExit:
-        pass
 
 
 @patch("operation.Operation.column_name_to_id")
