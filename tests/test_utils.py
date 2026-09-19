@@ -36,7 +36,7 @@ def test_parse_valid_args(params) -> None:
 def test_parse_invalid_operation(params) -> None:
     try:
         parse_args(params)
-        assert False
+        pytest.fail("parse_args did not exit for invalid params")
     except SystemExit:
         pass
 
@@ -46,7 +46,7 @@ def test_load_data_invalid_file(mocked_open) -> None:
     mocked_open.side_effect = OSError
     try:
         load_data("")
-        assert False
+        pytest.fail("load_data did not exit on invalid file")
     except SystemExit:
         pass
 
@@ -67,7 +67,7 @@ def test_get_column_id_invalid_column(
     mock_column_name_to_id.return_value = column_name_to_id_return_value
     try:
         get_column_id(Operation(mock_dataset), "column1")
-        assert False
+        pytest.fail("get_column_id did not exit for invalid column")
     except SystemExit:
         pass
 
