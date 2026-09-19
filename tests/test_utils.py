@@ -59,8 +59,9 @@ def test_get_column_id_invalid_column(
     mock_dataset, mock_column_name_to_id, column_name_to_id_return_value
 ) -> None:
     mock_column_name_to_id.return_value = column_name_to_id_return_value
+    operation = Operation(mock_dataset)
     with pytest.raises(SystemExit):
-        get_column_id(Operation(mock_dataset), "column1")
+        get_column_id(operation, "column1")
 
 
 @patch("operation.Operation.column_name_to_id")
